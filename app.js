@@ -24,4 +24,4 @@ app.get('/', (req, res) => {
     res.send('We are on home');
 })
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 8080)
