@@ -9,7 +9,7 @@ const questions = require('./routes/questions');
 
 require('dotenv/config')
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 1337;
 
 app.use(bodyParser.json());
 app.use(cors());
