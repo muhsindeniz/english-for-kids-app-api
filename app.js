@@ -9,7 +9,7 @@ const questions = require('./routes/questions');
 
 require('dotenv/config')
 
-var port = process.env.PORT || 1337;
+const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -26,4 +26,6 @@ app.get('/', (req, res) => {
     res.send('We are on home');
 })
 
-app.listen(port)
+app.listen(port, () => {
+    console.log("App is running on port " + port);
+});
