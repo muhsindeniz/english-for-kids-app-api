@@ -9,6 +9,8 @@ const questions = require('./routes/questions');
 
 require('dotenv/config')
 
+var port = process.env.PORT || 8080;
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -24,4 +26,4 @@ app.get('/', (req, res) => {
     res.send('We are on home');
 })
 
-app.listen(process.env.PORT || 8080)
+app.listen(port)
