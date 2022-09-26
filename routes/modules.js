@@ -24,14 +24,9 @@ router.get('/modules', async (req, res) => {
 router.post('/addModules', upload.single('icon'), (req, res) => {
     const modules = new Modules({
         title: req.body.title,
-        icon: req.body.icon,
+        icon: req.file && (process.env.URL + req.file.path) || '',
     })
-
     try {
-        if (req.file) {
-            modules.icon = req.file.path
-        }
-
         modules.save()
             .then(user => {
                 res.json({
@@ -61,11 +56,6 @@ router.post('/addModules', upload.single('icon'), (req, res) => {
 //Modules Güncelleme
 router.patch('/modules/:id', upload.single('icon'), async (req, res) => {
     try {
-
-        if (req.file) {
-            req.body.icon = req.file.path
-        }
-
         await Modules.updateOne(
             {
                 _id: req.params.id
@@ -73,7 +63,7 @@ router.patch('/modules/:id', upload.single('icon'), async (req, res) => {
             {
                 $set: {
                     title: req.body.title,
-                    icon: req.body.icon,
+                    icon: req.file.path && process.env.URL + req.file.path || '',
                 }
             }
         )
